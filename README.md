@@ -33,7 +33,7 @@ We can configure its contents from the parameters
 
 ## Documentation
 
-You can find more information about the block on the documentation page of [Ascoos CMS - BLOCKS - More Author Articles Documantation](help/tutorial.en.md)
+You can find more information about the block on the documentation page of [Ascoos CMS - BLOCKS - More Author Articles Documantation](https://docs.ascoos.com/ascoos/ext/blocks/more-author-articles/tutorial-en.html)
 
 ***
 
@@ -45,7 +45,7 @@ Please send any feedback or suggestions to [@ascoos](https://x.com/ascoos) (X - 
  
 ## License
 
-[AGL (ASCOOS General License)](http://docs.ascoos.com/lics/ascoos/AGL.html)
+[AGL (ASCOOS General License)](https://docs.ascoos.com/lics/ascoos/AGL-F.html)
 
 ***
 
