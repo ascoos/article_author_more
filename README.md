@@ -51,6 +51,6 @@ Please send any feedback or suggestions to [@ascoos](https://x.com/ascoos) (X - 
 
 ## Download
 
-- [ASCOOS CMS More Author Articles from Original Download site](https://dl.ascoos.com/cms/ascoos/ext/blocks/article_author_more/article_author_more-latest.zip)
+- [ASCOOS CMS More Author Articles from Original Download site](https://dl.ascoos.com/cms/ascoos/ext/blocks/more-author-articles/article_author_more-latest.zip)
 
 - [ASCOOS CMS  More Author Articles from Github](https://github.com/ascoos/article_author_more/releases)
