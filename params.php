@@ -20,9 +20,9 @@
  * @subpackage         : Pamameters Manager file
  * @source             : /[BLOCKS PATH]/article_author_more/params.php
  * @fileNo             : 
- * @version            : 1.0.2
+ * @version            : 1.0.3
  * @created            : 2007-05-11 17:49:31 UTC+3
- * @updated            : 2024-10-09 07:00:00 UTC+3
+ * @updated            : 2024-10-10 07:00:00 UTC+3
  * @author             : Drogidis Christos
  * @authorSite         : www.alexsoft.gr
 */
@@ -43,7 +43,7 @@ function getCategories($owner='articles', $fields='cat_id, title, access, groupi
 {
 	global $ASCOOS, $my, $objDatabase;
 
-	$where = array();
+	$where = [];
 	$where[] = "owner = ''.$owner.''";
 	$where[] = "groupid <= ".$my->groupid;
   	$where[] = "published=1";

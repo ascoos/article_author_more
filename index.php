@@ -20,9 +20,9 @@
  * @subpackage         	: Main Frontend file
  * @source             	: /[BLOCKS PATH]/article_author_more/index.php
  * @fileNo             	: 
- * @version            	: 1.0.2
+ * @version            	: 1.0.3
  * @created            	: 2007-05-11 17:49:31 UTC+3
- * @updated            	: 2024-10-09 07:00:00 UTC+3
+ * @updated            	: 2024-10-10 07:00:00 UTC+3
  * @author             	: Drogidis Christos
  * @authorSite         	: www.alexsoft.gr
  * @license 			: AGL-F
@@ -34,18 +34,18 @@ defined ("ALEXSOFT_RUN_CMS") or die("Prohibition of Access.");
 
 global $cms_site, $objDatabase, $objLang, $ASCOOS, $app, $my, $option, $task, $aid, $objDual;
 
-// Εάν είμαστε σε κατάσταση προβολής άρθρου
+// If we are in article view mode
 if ( ($option == 'articles') && ($task == 'view') )
 {
 	$article_id = $aid;
 
-	// Παίρνουμε από την βάση δεδομένων το ID του αρθρογράφου.
+	// We get from the database, the ID of the author.
 	$query = "SELECT created_by FROM #__articles WHERE article_id=".$article_id." AND lang_id = ".$ASCOOS['lang']->id." LIMIT 1";
 	$objDatabase->setSQLQuery( $query );
 	$author_id = $objDatabase->getResult();
 	unset($query);
 	
-	// Εάν έχει εντοπιστεί αρθρογράφος.
+	// If an author has been identified.
 	if ($author_id)
 	{
 		// Get Value Block Parameters
@@ -60,18 +60,18 @@ if ( ($option == 'articles') && ($task == 'view') )
 		// load Block Theme
 		$block->loadTheme($theme);
 
-		$where = array();
+		$where = [];
 
-		if (!$all_lang) $where[] = "a.lang_id = ".$ASCOOS['lang']->id;					// Σε όλες τις γλώσσες ή όχι
-		if ($type != '') $where[] = "a.type IN (".$type.")";							// τύπος του άρθρου
-		if ($cat_ids != '') $where[] = "a.cat_id IN (".$cat_ids.")";					// Κατηγορίες άρθρων που περιλαμβάνονται
-		if ($except_cat_ids != '') $where[] = "a.cat_id NOT IN (".$except_cat_ids.")"; 	// Κατηγορίες άρθρων που εξαιρούνται
+		if (!$all_lang) $where[] = "a.lang_id = ".$ASCOOS['lang']->id;					// In all languages or current
+		if ($type != '') $where[] = "a.type IN (".$type.")";							// Type of article
+		if ($cat_ids != '') $where[] = "a.cat_id IN (".$cat_ids.")";					// Article categories included
+		if ($except_cat_ids != '') $where[] = "a.cat_id NOT IN (".$except_cat_ids.")"; 	// Excluded article categories
 		
-		$where[] = "a.created_by = ".$author_id;		// Επιλέγουμε άρθρα μόνο του συγκεκριμένου αρθρογράφου.
-		$where[] = "a.approved=1";						// Εάν είναι επικυρωμένο
-		$where[] = "a.published=1"; 					// Εάν είναι δημόσιευμένο
-		$where[] = "a.groupid <= ".$my->groupid; 		// Εάν η ομάδα χρήστη είναι λατώτερη ή ίση με του αρθρογράφου.
-		$where[] = "a.article_id <> ".$article_id; 		// Εξαιρούμε το τρέχων άρθρο			
+		$where[] = "a.created_by = ".$author_id;		// We select articles only by the specific author.
+		$where[] = "a.approved=1";						// If the article is approved
+		$where[] = "a.published=1"; 					// If the article is published
+		$where[] = "a.groupid <= ".$my->groupid; 		// If the user group is inferior to or equal to the author's.
+		$where[] = "a.article_id <> ".$article_id; 		// We exclude the current article from the database search.			
 
 
 		$query = "SELECT a.id, a.article_id, a.title, a.lang_id, a.cat_id, a.created, a.hits, a.access, a.groupid, l.domain AS flag"
